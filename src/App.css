@@ -1,0 +1,411 @@
+/* Reset et styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation */
+.navigation {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: white;
+}
+
+/* Layout principal */
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* En-têtes */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Formulaire d'exercice */
+.exercise-form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Description de technique */
+.technique-description {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #667eea;
+}
+
+.technique-description h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.technique-description p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.phases h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.phases ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.phases li {
+  padding: 0.25rem 0;
+  color: #555;
+}
+
+/* Boutons */
+.start-button,
+.control-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 0.5rem;
+}
+
+.start-button:hover,
+.control-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.control-button.primary {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+/* Exercice de respiration */
+.breathing-exercise {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.exercise-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #667eea;
+  cursor: pointer;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+}
+
+.exercise-header h2 {
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+/* Cercle de respiration */
+.breathing-circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+  height: 300px;
+}
+
+.breathing-circle {
+  width: 200px;
+  height: 200px;
+  border: 6px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.breathing-circle.active {
+  animation: breathe-pulse 4s ease-in-out infinite;
+}
+
+@keyframes breathe-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.circle-content {
+  text-align: center;
+}
+
+.phase-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.timer {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.phase-instruction {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.progress-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cycle-info {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.vibration-indicator {
+  font-size: 0.9rem;
+  color: #667eea;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.controls {
+  text-align: center;
+}
+
+.completion {
+  text-align: center;
+  padding: 2rem;
+}
+
+.completion h3 {
+  color: #4CAF50;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Page À propos */
+.about-page .content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.about-page section {
+  margin-bottom: 2rem;
+}
+
+.about-page h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.about-page h3 {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.about-page p,
+.about-page li {
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.technique-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #667eea;
+}
+
+.about-page ul {
+  padding-left: 1.5rem;
+}
+
+.about-page ol {
+  padding-left: 1.5rem;
+}
+
+.disclaimer {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid #f39c12;
+}
+
+.disclaimer p {
+  color: #856404;
+  margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .breathing-circle {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .phase-name {
+    font-size: 1.2rem;
+  }
+  
+  .timer {
+    font-size: 1.5rem;
+  }
+}
