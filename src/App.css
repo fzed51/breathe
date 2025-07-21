@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -183,7 +183,7 @@ body {
 }
 
 .control-button.primary {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
 }
 
 /* Exercice de respiration */
@@ -249,7 +249,8 @@ body {
 }
 
 @keyframes breathe-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.8;
   }
@@ -315,7 +316,7 @@ body {
 }
 
 .completion h3 {
-  color: #4CAF50;
+  color: #4caf50;
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
@@ -387,24 +388,24 @@ body {
   .container {
     padding: 0 1rem;
   }
-  
+
   .nav-container {
     padding: 0 1rem;
   }
-  
+
   .header h1 {
     font-size: 2rem;
   }
-  
+
   .breathing-circle {
     width: 150px;
     height: 150px;
   }
-  
+
   .phase-name {
     font-size: 1.2rem;
   }
-  
+
   .timer {
     font-size: 1.5rem;
   }

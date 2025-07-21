@@ -95,8 +95,3 @@ Quand vous travaillez sur ce projet :
 2 pages : 
 - page principale contenant un formulaire permettant de saisir les information de l'exercie
 - page de renseignement "about" expliquant l'application
-
-## Prochaines Étapes
-
-1. Créer la structure de dossiers recommandée
-2. créer les 2 pages

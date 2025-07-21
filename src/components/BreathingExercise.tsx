@@ -1,7 +1,7 @@
-import React from 'react';
-import { useBreathingTimer } from '../hooks/useBreathingTimer';
-import { useVibration } from '../hooks/useVibration';
-import type { ExerciseSettings } from '../types/breathing';
+import React from "react";
+import { useBreathingTimer } from "../hooks/useBreathingTimer";
+import { useVibration } from "../hooks/useVibration";
+import type { ExerciseSettings } from "../types/breathing";
 
 interface BreathingExerciseProps {
   settings: ExerciseSettings;
@@ -12,7 +12,7 @@ interface BreathingExerciseProps {
 export const BreathingExercise: React.FC<BreathingExerciseProps> = ({
   settings,
   onComplete,
-  onBack
+  onBack,
 }) => {
   const {
     vibratePhaseChange,
@@ -21,17 +21,20 @@ export const BreathingExercise: React.FC<BreathingExerciseProps> = ({
     vibrateStart,
     vibratePause,
     vibrateResume,
-    isVibrationSupported
+    isVibrationSupported,
   } = useVibration();
 
-  const { state, context, start, pause, resume, reset } = useBreathingTimer(settings, {
-    onPhaseChange: vibratePhaseChange,
-    onCycleComplete: vibrateCycleComplete,
-    onExerciseComplete: vibrateExerciseComplete,
-    onStart: vibrateStart,
-    onPause: vibratePause,
-    onResume: vibrateResume
-  });
+  const { state, context, start, pause, resume, reset } = useBreathingTimer(
+    settings,
+    {
+      onPhaseChange: vibratePhaseChange,
+      onCycleComplete: vibrateCycleComplete,
+      onExerciseComplete: vibrateExerciseComplete,
+      onStart: vibrateStart,
+      onPause: vibratePause,
+      onResume: vibrateResume,
+    }
+  );
 
   const handleComplete = () => {
     reset();
@@ -40,31 +43,31 @@ export const BreathingExercise: React.FC<BreathingExerciseProps> = ({
 
   const getPhaseColor = (phaseName: string): string => {
     switch (phaseName) {
-      case 'inhale':
-        return '#4CAF50'; // Vert
-      case 'hold':
-        return '#2196F3'; // Bleu
-      case 'exhale':
-        return '#FF9800'; // Orange
-      case 'pause':
-        return '#9C27B0'; // Violet
+      case "inhale":
+        return "#4CAF50"; // Vert
+      case "hold":
+        return "#2196F3"; // Bleu
+      case "exhale":
+        return "#FF9800"; // Orange
+      case "pause":
+        return "#9C27B0"; // Violet
       default:
-        return '#666';
+        return "#666";
     }
   };
 
   const getPhaseInstruction = (phaseName: string): string => {
     switch (phaseName) {
-      case 'inhale':
-        return 'Inspirez';
-      case 'hold':
-        return 'Retenez';
-      case 'exhale':
-        return 'Expirez';
-      case 'pause':
-        return 'Pausez';
+      case "inhale":
+        return "Inspirez";
+      case "hold":
+        return "Retenez";
+      case "exhale":
+        return "Expirez";
+      case "pause":
+        return "Pausez";
       default:
-        return '';
+        return "";
     }
   };
 
@@ -83,49 +86,47 @@ export const BreathingExercise: React.FC<BreathingExerciseProps> = ({
             Cycle {context.cycleIndex + 1} sur {context.totalCycles}
           </div>
           {isVibrationSupported && (
-            <div className="vibration-indicator">
-              📳 Vibrations actives
-            </div>
+            <div className="vibration-indicator">📳 Vibrations actives</div>
           )}
         </div>
 
         <div className="breathing-circle-container">
-          <div 
-            className={`breathing-circle ${state === 'running' ? 'active' : ''}`}
-            style={{ 
-              borderColor: getPhaseColor(context.currentPhase?.name || ''),
-              animationDuration: `${context.currentPhase?.duration || 4}s`
+          <div
+            className={`breathing-circle ${
+              state === "running" ? "active" : ""
+            }`}
+            style={{
+              borderColor: getPhaseColor(context.currentPhase?.name || ""),
+              animationDuration: `${context.currentPhase?.duration || 4}s`,
             }}
           >
             <div className="circle-content">
               <div className="phase-name">
-                {getPhaseInstruction(context.currentPhase?.name || '')}
+                {getPhaseInstruction(context.currentPhase?.name || "")}
               </div>
-              <div className="timer">
-                {context.timeRemaining}s
-              </div>
+              <div className="timer">{context.timeRemaining}s</div>
             </div>
           </div>
         </div>
 
         <div className="phase-instruction">
-          {context.currentPhase?.instruction || ''}
+          {context.currentPhase?.instruction || ""}
         </div>
 
         <div className="controls">
-          {state === 'idle' && (
+          {state === "idle" && (
             <button className="control-button primary" onClick={start}>
               Commencer
             </button>
           )}
-          
-          {state === 'running' && (
+
+          {state === "running" && (
             <button className="control-button" onClick={pause}>
               Pause
             </button>
           )}
-          
-          {state === 'paused' && (
+
+          {state === "paused" && (
             <>
               <button className="control-button primary" onClick={resume}>
                 Reprendre
@@ -135,12 +136,17 @@ export const BreathingExercise: React.FC<BreathingExerciseProps> = ({
               </button>
             </>
           )}
-          
-          {state === 'completed' && (
+
+          {state === "completed" && (
             <div className="completion">
               <h3>🎉 Exercice terminé !</h3>
-              <p>Félicitations ! Vous avez complété votre session de respiration.</p>
-              <button className="control-button primary" onClick={handleComplete}>
+              <p>
+                Félicitations ! Vous avez complété votre session de respiration.
+              </p>
+              <button
+                className="control-button primary"
+                onClick={handleComplete}
+              >
                 Nouvel exercice
               </button>
             </div>

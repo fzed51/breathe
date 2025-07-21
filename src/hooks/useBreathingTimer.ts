@@ -1,5 +1,10 @@
-import { useState, useEffect, useCallback } from 'react';
-import type { BreathingPhase, TimerState, TimerContext, ExerciseSettings } from '../types/breathing';
+import { useState, useEffect, useCallback } from "react";
+import type {
+  BreathingPhase,
+  TimerState,
+  TimerContext,
+  ExerciseSettings,
+} from "../types/breathing";
 
 interface BreathingTimerOptions {
   onPhaseChange?: () => void;
@@ -10,8 +15,11 @@ interface BreathingTimerOptions {
   onResume?: () => void;
 }
 
-export const useBreathingTimer = (settings: ExerciseSettings, options: BreathingTimerOptions = {}) => {
-  const [state, setState] = useState<TimerState>('idle');
+export const useBreathingTimer = (
+  settings: ExerciseSettings,
+  options: BreathingTimerOptions = {}
+) => {
+  const [state, setState] = useState<TimerState>("idle");
   const [currentCycle, setCurrentCycle] = useState(0);
   const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
@@ -22,10 +30,13 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
   const currentPhase = phases[currentPhaseIndex];
 
   // Calculer la durée de la phase actuelle
-  const getPhaseDuration = useCallback((phase: BreathingPhase): number => {
-    const customDuration = settings.customDurations?.[phase.name];
-    return customDuration || phase.duration;
-  }, [settings.customDurations]);
+  const getPhaseDuration = useCallback(
+    (phase: BreathingPhase): number => {
+      const customDuration = settings.customDurations?.[phase.name];
+      return customDuration || phase.duration;
+    },
+    [settings.customDurations]
+  );
 
   // Initialiser le timer
   const initializeTimer = useCallback(() => {
@@ -36,8 +47,8 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
 
   // Démarrer le timer
   const start = useCallback(() => {
-    setState('running');
-    if (state === 'idle') {
+    setState("running");
+    if (state === "idle") {
       initializeTimer();
     }
     options.onStart?.();
@@ -45,19 +56,19 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
 
   // Mettre en pause
   const pause = useCallback(() => {
-    setState('paused');
+    setState("paused");
     options.onPause?.();
   }, [options]);
 
   // Reprendre
   const resume = useCallback(() => {
-    setState('running');
+    setState("running");
     options.onResume?.();
   }, [options]);
 
   // Arrêter et réinitialiser
   const reset = useCallback(() => {
-    setState('idle');
+    setState("idle");
     setCurrentCycle(0);
     setCurrentPhaseIndex(0);
     initializeTimer();
@@ -66,20 +77,20 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
   // Passer à la phase suivante
   const nextPhase = useCallback(() => {
     const nextPhaseIndex = currentPhaseIndex + 1;
-    
+
     if (nextPhaseIndex >= phases.length) {
       // Fin du cycle, passer au cycle suivant
       const nextCycle = currentCycle + 1;
-      
+
       options.onCycleComplete?.();
-      
+
       if (nextCycle >= totalCycles) {
         // Exercice terminé
-        setState('completed');
+        setState("completed");
         options.onExerciseComplete?.();
         return;
       }
-      
+
       // Nouveau cycle
       setCurrentCycle(nextCycle);
       setCurrentPhaseIndex(0);
@@ -91,14 +102,21 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
       setTimeRemaining(getPhaseDuration(phases[nextPhaseIndex]));
       options.onPhaseChange?.();
     }
-  }, [currentPhaseIndex, currentCycle, phases, totalCycles, getPhaseDuration, options]);
+  }, [
+    currentPhaseIndex,
+    currentCycle,
+    phases,
+    totalCycles,
+    getPhaseDuration,
+    options,
+  ]);
 
   // Gestion du timer
   useEffect(() => {
-    if (state !== 'running' || timeRemaining <= 0) return;
+    if (state !== "running" || timeRemaining <= 0) return;
 
     const interval = setInterval(() => {
-      setTimeRemaining(prev => {
+      setTimeRemaining((prev) => {
         if (prev <= 1) {
           nextPhase();
           return 0;
@@ -116,7 +134,7 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
     phaseIndex: currentPhaseIndex,
     cycleIndex: currentCycle,
     timeRemaining,
-    totalCycles
+    totalCycles,
   };
 
   return {
@@ -125,6 +143,6 @@ export const useBreathingTimer = (settings: ExerciseSettings, options: Breathing
     start,
     pause,
     resume,
-    reset
+    reset,
   };
 };

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
 interface VibrationPattern {
   short: number[];
@@ -17,29 +17,32 @@ export const useVibration = () => {
     long: [300],
     phaseChange: [150, 50, 150], // Double vibration pour changement de phase
     cycleComplete: [200, 100, 200, 100, 200], // Triple vibration pour fin de cycle
-    exerciseComplete: [300, 150, 300, 150, 300, 150, 300] // Vibration longue pour fin d'exercice
+    exerciseComplete: [300, 150, 300, 150, 300, 150, 300], // Vibration longue pour fin d'exercice
   };
 
   // Vérifier si la vibration est disponible
   const isVibrationSupported = useCallback((): boolean => {
-    return 'navigator' in window && 'vibrate' in navigator;
+    return "navigator" in window && "vibrate" in navigator;
   }, []);
 
   // Fonction générique de vibration
-  const vibrate = useCallback((pattern: number | number[]): boolean => {
-    if (!isVibrationSupported()) {
-      console.log('Vibration non supportée sur cet appareil');
-      return false;
-    }
+  const vibrate = useCallback(
+    (pattern: number | number[]): boolean => {
+      if (!isVibrationSupported()) {
+        console.log("Vibration non supportée sur cet appareil");
+        return false;
+      }
 
-    try {
-      navigator.vibrate(pattern);
-      return true;
-    } catch (error) {
-      console.error('Erreur lors de la vibration:', error);
-      return false;
-    }
-  }, [isVibrationSupported]);
+      try {
+        navigator.vibrate(pattern);
+        return true;
+      } catch (error) {
+        console.error("Erreur lors de la vibration:", error);
+        return false;
+      }
+    },
+    [isVibrationSupported]
+  );
 
   // Vibrations spécifiques pour les différents événements
   const vibratePhaseChange = useCallback(() => {
@@ -82,6 +85,6 @@ export const useVibration = () => {
     vibrateStart,
     vibratePause,
     vibrateResume,
-    stopVibration
+    stopVibration,
   };
 };
